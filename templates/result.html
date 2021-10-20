@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel = "icon" href =  
+"https://image.flaticon.com/icons/png/512/2043/premium/2043014.png" 
+        type = "image/x-icon"> 
+<script src="https://kit.fontawesome.com/c5ffb49d8a.js" crossorigin="anonymous"></script>
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<title >DLTG - Prediction</title>
+
+
+    
+<body>
+
+<div class="container-fluid">
+       
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/"><i class="fas fa-infinity"></i> Deep-Learning-Training-GUI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="training" >Training</a>
+                <a class="nav-item nav-link active" href="predict" >Predict</a>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    
+
+    <div class="jumbotron">
+        <h1 class="display-4" style="text-align: center;">Result </h1>
+      </div>
+
+<div class="row">
+
+  <div class="col-md-4" style="text-align: center;">
+    <h4 class="display-5" style="text-align: center;"> {{  result['task_type'] }} Input</h4>
+      <img src="data:image/jpeg;base64,{{ input_img }}" style="height: 320px; width: 320px; text-align: center;">
+  </div>
+  
+  <br>
+  <div class="col-md-5 border">
+  <!--
+  <h4 class="display-4" style="text-align: center;">Accuracy
+  -->
+  </h4>
+  <br>
+
+  <div class="progress" style="text-align: center;">
+    <!--
+    <div class="progress-bar" role="progressbar" style="width: {{  max_pred }}%"  aria-valuemin="0" aria-valuemax="100">{{  max_pred }}% - {{predicted_class}}</div>
+    -->
+  </div>
+  <br>
+    <h5 class="display-5"><i class="fas fa-coffee" style="text-align: center;"></i>      Task: <strong>{{  result['task_type'] }}</strong>  </h5>
+    <h5 class="display-5"><i class="fas fa-coffee" style="text-align: center;"></i>      Model Name: <strong>{{  result['model'] }}</strong>  </h5>
+    <h5 class="display-5"><i class="fas fa-coffee" style="text-align: center;"></i>      Dataset: <strong>{{  result['dataset'] }}</strong>  </h5>
+    <br>
+
+    <form action = "show_result" method = "POST">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <!--
+        <h5 class="form-control form-control-sm" type="text" name="task_type" value=task_type></h5>
+        <h5 class="form-control form-control-sm" type="text" name="dataset" value=dataset></h5>
+        <h5 class="form-control form-control-sm" type="text" name="model" value=model></h5>
+        <a class="btn btn-outline-primary" href="show_result">Next</a>
+        -->
+        <input class="btn btn-outline-primary" type = "submit" value = "Next" /> 
+      </div>
+
+
+</div>
+<div class="col-md-3 border" style="text-align: center;">
+  <h4 class="display-5" style="text-align: center;"> {{  result['task_type'] }} Result</h4>
+    {% if show_heatmap == True %}
+        <div><img src="data:image/jpeg;base64,{{ pred_img }}" style="height: 320px; width: 320px; text-align: center;"></div>
+        <!--class="img-fluid" alt="Image"  id= "imgID"style="height: 350px; width: 100%;"  -->
+    {% else %}
+    <!--<h5 class="display-4" style="text-align: center;"></h5> 
+      {% for item in pred_results %}    
+          <p>{{ item[0] }} {{ item[1] }}</p>
+      {% endfor %} 
+    -->
+      <p>{{ pred_img }}</p>
+    {% endif %}
+</div>
+
+</div>
+<br>
+<!--
+<br>            
+<footer style="text-align: center;">Built by <a href="https://mustafamerttunali.github.io/" target="_blank">Mustafa Mert Tunalı</a>, Version 1.7</footer>
+-->
+
+  
+
+
+</body>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
